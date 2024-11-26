@@ -1,0 +1,15 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body{
+    background-color: #000000;
+    color: #86a1a1;
+    font-family: "Roboto", system-ui;
+    font-style: normal;
+    font-size: 0.8em;
+}
