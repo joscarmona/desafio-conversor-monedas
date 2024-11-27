@@ -7,9 +7,140 @@
 
 /* BODY */
 body{
-    background-color: #000000;
+    background-color: #0f0d0d;
     color: #86a1a1;
     font-family: "Roboto", system-ui;
     font-style: normal;
     font-size: 0.8em;
+}
+
+/* *********************** LAYOUT *********************** */
+.layout{
+    /* border: solid rebeccapurple; */
+    height: 100vh;
+    display: grid;
+    grid-template-areas: 
+    'encabezado'
+    'principal'
+    'pieDePagina';
+    grid-template-rows: 1fr 6fr 1fr;
+    gap: 20px;
+}
+
+/* HEADER */
+.encabezado{
+    margin: 1em auto 0em auto;
+    /* border: solid red; */
+    border-top: solid #8598A1 1px;
+    border-bottom: solid #8598A1 1px;
+    grid-area: encabezado;
+    text-align: center;
+    /* margin: auto; */
+    padding: 1em 0em;
+}
+/* *********************** */
+
+/* MAIN */
+.principal{
+    /* border: solid lawngreen; */
+    grid-area: principal;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+/* Panel de conversión de las monedas */
+.panelConvMonedas{
+    /* border: solid purple; */
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    gap: 10px;
+    align-items: center;
+    padding: 2em 0em;
+    background-color: #040e20;
+    border-radius: 5px;
+}
+
+/* ARTICLE, contiene los elementos web H2 e  input (Pesos CLP)  */
+.pesosClpContainer{
+    /* border: solid aqua; */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 60%;
+}
+
+/* INPUT, donde se ingresa el monto en CLP */
+#inputClp{
+    height: 2em;
+    text-align: center;
+    border-radius: 5px;
+    font-size: medium;
+}
+#inputClp::placeholder{
+    text-align: center;
+}
+
+/* ARTICLE, contiene lo referente a la conversion de la moneda (H4, select,button)*/
+.monedaAConvertirContainer{
+    /* border: solid chartreuse; */
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 5px;
+}
+
+/* P, Enunciado del SELECT */
+.parrafoMonedaAConvertir{
+    font-size: medium;
+    font-weight: 500;
+}
+
+/* SELECT, permite seleccionar a la moneda que se desea convertir el CLP */
+#monedaAConvertir{
+    height: 2em;
+    text-align: center;
+    border-radius: 5px;
+    font-size: medium;
+}
+
+/* BUTTON, Realiza la conversión a la moneda deseada y se muestra el resultado en el tag <p> continuo y además se genera la gráfica con los valores de la moneda en los últimos 10 días */
+#convertirGraficarButton{
+    height: 2em;
+    /* text-align: center; */
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: 600;
+    margin-top: 0.5em;
+    background-color: #7d95c2;
+    color: #040e20;
+    cursor: pointer;
+}
+
+/* P, Muestra el resultado de la conversión de CLP a la moneda seleccionada */
+#resultadoConversion{
+    font-size: medium;
+    font-weight: 500;
+}
+
+/* SECTION, contiene la gráfica del valor de la moneda a convertir en los últimos 10 días */
+.graphContainer{
+    /* border: solid crimson; */
+}
+
+#graficoValorMonedaHistorico{
+    /* border: solid burlywood; */
+}
+
+/* *********************************** */
+
+/* FOOTER, PIE DE PÁGINA */
+.pieDePagina{
+    /* border: solid blue; */
+    grid-area: pieDePagina;
+    text-align: center;
+    margin: auto;
+    font-weight: 600;
 }

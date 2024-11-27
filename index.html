@@ -24,6 +24,48 @@
 </head>
 <body>
 
+    <!-- ------------------------------------------------------------------------------------ -->
+    <!-- -------------------------------------- LAYOUT -------------------------------------- -->
+    <!-- ------------------------------------------------------------------------------------ -->
+    <div class="layout">
+        <!-- HEADER -->
+        <h1 class="encabezado">Conversor de monedas Nacional</h1>
+        
+        <!-- MAIN -->
+        <main class="principal">
+            <!-- Panel de conversión de las monedas -->
+            <section class="panelConvMonedas">
+                <article class="pesosClpContainer">
+                    <h2>Pesos CLP</h2>
+                    <!-- INPUT de tipo número -->
+                    <input type="number" id="inputClp"  placeholder="Por favor ingrese el monto en CLP">
+                </article>
+
+                <article class="monedaAConvertirContainer">
+                    <!-- SELECT, selección de la moneda a convertir -->
+                    <p class="parrafoMonedaAConvertir">Moneda a convertir</p>
+                    <select name="" id="monedaAConvertir"></select>
+
+                    <!-- BUTTON, ejecuta la conversión de moneda y renderiza los datos  -->
+                    <button id="convertirGraficarButton">Convertir</button>
+                    <p id="resultadoConversion">...</p>
+                </article>
+            </section>
+
+            <!-- Gráfico muestra el valor de la moneda en los últimos 10 días -->
+            <section class="graphContainer">
+                <canvas id="graficoValorMonedaHistorico"></canvas>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="pieDePagina">
+            <p>José Carmona - DesafíoLatam - 2024</p>
+        </footer>
+        
+
+    </div>
+
 
     <!-- SCRIPT file -->
     <script src="./assets/js/script.js"></script>
