@@ -59,8 +59,11 @@ body{
     gap: 10px;
     align-items: center;
     padding: 2em 0em;
-    background-color: #040e20;
-    border-radius: 5px;
+    background-color: #290f5a;
+    border-radius: 10px;
+    border-style: outset;
+    border-width: 3px;
+    border-color: #5c438b;
 }
 
 /* ARTICLE, contiene los elementos web H2 e  input (Pesos CLP)  */
@@ -72,12 +75,19 @@ body{
     width: 60%;
 }
 
+/* LABEL, INPUT & SELECT */
+.labelIputSelect{
+    font-size:  large;
+    font-weight: 500;
+}
+
 /* INPUT, donde se ingresa el monto en CLP */
 #inputClp{
     height: 2em;
     text-align: center;
     border-radius: 5px;
     font-size: medium;
+    border: none;
 }
 #inputClp::placeholder{
     text-align: center;
@@ -104,6 +114,7 @@ body{
     text-align: center;
     border-radius: 5px;
     font-size: medium;
+    border: none;
 }
 
 /* BUTTON, Realiza la conversión a la moneda deseada y se muestra el resultado en el tag <p> continuo y además se genera la gráfica con los valores de la moneda en los últimos 10 días */
@@ -111,13 +122,19 @@ body{
     height: 2em;
     /* text-align: center; */
     border-radius: 5px;
-    font-size: medium;
+    font-size: large;
     font-weight: 600;
     margin-top: 0.5em;
     background-color: #7d95c2;
     color: #040e20;
     cursor: pointer;
+    border: none;
 }
+
+#convertirGraficarButton:hover{
+    background-color: #a893cc;
+}
+
 
 /* P, Muestra el resultado de la conversión de CLP a la moneda seleccionada */
 #resultadoConversion{
