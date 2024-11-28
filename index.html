@@ -46,7 +46,11 @@
                     <!-- SELECT, selección de la moneda a convertir -->
                     <!-- <p class="parrafoMonedaAConvertir">Moneda a convertir</p> -->
                     <label for="monedaAConvertir" class="labelIputSelect">Moneda a convertir</label>
-                    <select name="" id="monedaAConvertir"></select>
+                    <select name="monedas" id="monedaAConvertir">
+                        <option value="">Ninguna</option>
+                        <option value="dolar">USD</option>
+                        <option value="euro">EURO</option>
+                    </select>
 
                     <!-- BUTTON, ejecuta la conversión de moneda y renderiza los datos  -->
                     <button id="convertirGraficarButton">Convertir</button>
@@ -56,7 +60,7 @@
 
             <!-- Gráfico muestra el valor de la moneda en los últimos 10 días -->
             <section class="graphContainer">
-                <canvas id="graficoValorMonedaHistorico"></canvas>
+                <canvas id="graficoValorMoneda10dias"></canvas>
             </section>
         </main>
 
