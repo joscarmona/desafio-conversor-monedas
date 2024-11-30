@@ -56,7 +56,7 @@ body{
     width: 40%;
     margin: auto;
     text-align: center;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
     padding: 2em 0em;
     background-color: #290f5a;
@@ -140,6 +140,7 @@ body{
 #resultadoConversion{
     font-size: medium;
     font-weight: 500;
+    margin-top: 0.5em;
 }
 
 /* SECTION, contiene la gráfica del valor de la moneda a convertir en los últimos 10 días */

@@ -36,7 +36,6 @@
             <!-- Panel de conversión de las monedas -->
             <section class="panelConvMonedas">
                 <article class="pesosClpContainer">
-                    <!-- <h2>Pesos CLP</h2> -->
                     <label for="inputClp" class="labelIputSelect">Pesos CLP</label>
                     <!-- INPUT de tipo número -->
                     <input type="number" id="inputClp"  placeholder="Por favor ingrese el monto en CLP">
@@ -44,12 +43,17 @@
 
                 <article class="monedaAConvertirContainer">
                     <!-- SELECT, selección de la moneda a convertir -->
-                    <!-- <p class="parrafoMonedaAConvertir">Moneda a convertir</p> -->
                     <label for="monedaAConvertir" class="labelIputSelect">Moneda a convertir</label>
                     <select name="monedas" id="monedaAConvertir">
-                        <option value="">Ninguna</option>
+                        <option value="">Seleccione una moneda</option>
                         <option value="dolar">USD</option>
-                        <option value="euro">EURO</option>
+                        <option value="euro">Euro</option>
+                        <option value="bitcoin">Bitcoin</option>
+                        <option value="uf">Unidad de fomento (UF)</option>
+                        <option value="utm">Unidad Tributaria Mensual (UTM)</option>
+                        <option value="libra_cobre">Libra de Cobre</option>
+                        <option value="ivp">Indice de valor promedio (IVP)</option>
+                        <option value="ipc">Indice de Precios al Consumidor (IPC)</option>
                     </select>
 
                     <!-- BUTTON, ejecuta la conversión de moneda y renderiza los datos  -->
