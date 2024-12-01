@@ -17,7 +17,7 @@ body{
 /* *********************** LAYOUT *********************** */
 .layout{
     /* border: solid rebeccapurple; */
-    height: 100vh;
+    /* height: 100vh; */
     display: grid;
     grid-template-areas: 
     'encabezado'
@@ -44,8 +44,10 @@ body{
 .principal{
     /* border: solid lawngreen; */
     grid-area: principal;
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
 }
 
 /* Panel de conversión de las monedas */
@@ -146,10 +148,7 @@ body{
 /* SECTION, contiene la gráfica del valor de la moneda a convertir en los últimos 10 días */
 .graphContainer{
     /* border: solid crimson; */
-}
-
-#graficoValorMonedaHistorico{
-    /* border: solid burlywood; */
+    width: 80%;
 }
 
 /* *********************************** */

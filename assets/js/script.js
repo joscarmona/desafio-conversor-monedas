@@ -14,7 +14,7 @@ const buttonConvertirGraficar = document.getElementById('convertirGraficarButton
 const pResultadoConversion = document.getElementById('resultadoConversion')
 
 // <CANVAS>, se visualiza en un gráfico el valor, de la moneda de cambio seleccionada y a la cual se le realizó la conversión, en los últimos 10 días
-const canvasGraficoValorMoneda10dias = document.getElementById('graficoValorMoneda10dias')
+const canvasGraficoValorMoneda10dias = document.getElementById("graficoValorMoneda10dias")
 /* ************************************************************************* */
 
 /* ************************************************************************* */
@@ -49,47 +49,86 @@ const getMonedas = async(apiEndpointUrl) => {
 }
 /* ************************************************************************* */
 
-/* ************************************************************************* */
-/* **************** Realizar el cálculo del cambio de monedas *************** */
-/* ******************* Conversión de CLP a otras monedas ******************* */
-/* ******************* y muestra en el DOM el resultado ******************** */
-/* ************************************************************************* */
-// montoAConvertir: parámetro que indica el monto ingresado a través del <INPUT>
-// valorMonedaAConvertir: parámetro que indica el valor actual de la moneda a la cual se desea convertir
-// to.fixed(): el método toFixed() redondea la cadena a un número específico de decimales.
-// const getResultadoConversionMoneda = (montoAConvertir, valorMonedaAConvertir) => {
-//     // Operación de la conversión
-//     const resultadoConversionMoneda = montoAConvertir / valorMonedaAConvertir
-//     // console.log(resultadoConversionMoneda)
-
-//     return resultadoConversionMoneda
-// }
-
-/* ************************************************************************* */
-
 /* **************************************************************************** */
 /* ************ Renderizar el resultado de la conversión de monedas *********** */
 /* **************************************************************************** */
-// const renderResultado = async(monedaAConvertir) => {
 const renderResultado = async(montoAConvertir, monedaAConvertir) => {
     // Obtener los datos de las monedas desde la API
     const monedasData =  await getMonedas(apiUrl)
 
     // Convertir CLP a la moneda seleccionada
-    // const resultado = getResultadoConversionMoneda(Number(inputMontoEnClp.value), monedasData[monedaAConvertir].valor)
     const resultado = montoAConvertir / monedasData[monedaAConvertir].valor
     pResultadoConversion.textContent = `Resultado: $${resultado.toFixed(2)}`
 }
 /* **************************************************************************** */
 
+/* **************************************************************************** */
+/* *********** Preparar el objeto de configuración para la gráfica ************ */
+/* **************************************************************************** */
+const objetoDeConfiguracionParaGrafica = (ultimos10Valores, moneda) => {
+    // TYPE: tipo de gráfico
+    const tipoDeGrafico = "line"
+
+    // LABELS: eje horizontal se genera un nuevo arreglo con el nombre de las fechas
+    const fechas10UltimosDias = ultimos10Valores.map((valorfecha) => valorfecha.fecha.slice(0, 10))
+
+    // LABEL: título del conjunto de los datos
+    const titulo = "Últimos 10 valores de " + moneda
+
+    // BACKGROUNDCOlOR: color de los datos que se mostrarán en la gráfica
+    const colorDeLaLinea = "red"
+
+    // DATA: eje vertical (conjunto de los valores de la moneda durante los últimos 10 días), se genera un nuevo arreglo con los valores de la moneda seleccionada en los últimos 10
+    const valores10UltimosDias = ultimos10Valores.map((valorfecha) => valorfecha.valor)
+    
+    // Objeto de configuración para el gráfico
+    const config  = {
+        type: tipoDeGrafico,
+        data: {
+            labels: fechas10UltimosDias,
+            datasets: [{
+                label: titulo,
+                backgroundColor: colorDeLaLinea,
+                borderColor: "rgba(255, 0, 0, 0.3)",
+                data: valores10UltimosDias
+            }]
+        }
+    }
+
+    return config
+}
+/* **************************************************************************** */
 
 /* **************************************************************************** */
-/* ******* Renderizar gráfico con los valores de la moneda seleccionada ******* */
-/* *********************** Durante los últimos 10 días ************************ */
+/* ****** Renderizar un gráfico con los valores de la moneda seleccionada ***** */
+/* *********************** durante los últimos 10 días ************************ */
+/* **************************************************************************** */
+const renderGrafico = async(moneda) => {
+    // Endpoint que entrega los valores del último mes de la moneda seleccionada
+    const endpointUrl = apiUrl + moneda
+    // console.log(endpointUrl)
+    // console.log(moneda)
+    
+    // Obtener los valores del último mes de la moneda seleccionada
+    const valoresMonedaUltimoMes = await getMonedas(endpointUrl)
+
+    // Obtener los 10 últimos valores
+    const ultimos10Valores = valoresMonedaUltimoMes.serie.slice(0, 10)
+    
+    // Se Obtiene el objeto de configuración para el gráfico
+    const config = objetoDeConfiguracionParaGrafica(ultimos10Valores, moneda)
+    
+    // Se destruye el gráfico existente antes de crear uno nuevo
+    Chart.getChart("graficoValorMoneda10dias")?.destroy()
+
+    // Se genera el gráfico
+    canvasGraficoValorMoneda10dias.style.backgroundColor = "#d8d8d8"
+    new Chart(canvasGraficoValorMoneda10dias, config)
+
+}
 /* **************************************************************************** */
 
-/* **************************************************************************** */
-
+// renderGrafico("dolar")
 
 /* **************************************************************************** */
 /* *************************** EVENTO del <BUTTON> **************************** */
@@ -98,13 +137,14 @@ buttonConvertirGraficar.addEventListener("click", () =>{
     // Además de la validación que tiene por defecto el INPUT para ingresar solo números, igualmente se chequea
     // a continuación que el valor a ingresar sea a partir del número 1 y solo valores positivos
     if(Number(inputMontoEnClp.value) > 0 && Number.isInteger(Number(inputMontoEnClp.value)) && selectMonedaAConvertir.value != "") {
-        // alert("monto ingresado válido")
         // Mostrar resultado de la conversión de CLP a la moneda seleccionada
-        // renderResultado(selectMonedaAConvertir.value)
         renderResultado(Number(inputMontoEnClp.value), selectMonedaAConvertir.value)
 
+        // Se visualiza gráfico en el DOM con los valores de la moneda seleccionada en los últimos 10 días
+        renderGrafico(selectMonedaAConvertir.value)
+
     } else{
-        alert("por favor ingrese un monto válido y/o seleccione una moneda a convertir")
+        alert("por favor ingrese un monto válido y seleccione una moneda a convertir")
         pResultadoConversion.textContent = `...`
         inputMontoEnClp.value = ""
     }
