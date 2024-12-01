@@ -31,12 +31,16 @@ body{
 .encabezado{
     margin: 1em auto 0em auto;
     /* border: solid red; */
-    border-top: solid #8598A1 1px;
-    border-bottom: solid #8598A1 1px;
+    /* border-top: solid #8598A1 1px; */
+    /* border-bottom: solid #8598A1 1px; */
     grid-area: encabezado;
     text-align: center;
     /* margin: auto; */
     padding: 1em 0em;
+}
+
+hr{
+    border: solid #86a1a1 1px;
 }
 /* *********************** */
 
@@ -56,7 +60,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 40%;
-    margin: auto;
+    /* margin: auto; */
     text-align: center;
     gap: 20px;
     align-items: center;
